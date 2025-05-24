@@ -251,23 +251,6 @@
 </section>
 <!-- End image carousel -->
 
-<!-- Script -->
-<script>
-document.querySelectorAll('.image-compare').forEach(container => {
-  const afterImg = container.querySelector('.after-img');
-  const slider = container.querySelector('.slider');
-
-  container.addEventListener('mousemove', (e) => {
-    const rect = container.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const percent = Math.max(0, Math.min(x / rect.width, 1));
-    afterImg.style.clipPath = `inset(0 ${100 - percent * 100}% 0 0)`;
-    slider.style.left = `${percent * 100}%`;
-  });
-});
-</script>
-
-
 <!-- Image carousel -->
 <section class="hero is-small">
   <div class="hero-body">
@@ -418,5 +401,20 @@ document.querySelectorAll('.image-compare').forEach(container => {
 
     <!-- End of Statcounter Code -->
 
+    <!-- Script -->
+<script>
+document.querySelectorAll('.image-compare').forEach(container => {
+  const afterImg = container.querySelector('.after-img');
+  const slider = container.querySelector('.slider');
+
+  container.addEventListener('mousemove', (e) => {
+    const rect = container.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const percent = Math.max(0, Math.min(x / rect.width, 1));
+    afterImg.style.clipPath = `inset(0 ${100 - percent * 100}% 0 0)`;
+    slider.style.left = `${percent * 100}%`;
+  });
+});
+</script>
   </body>
   </html>
