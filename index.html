@@ -24,7 +24,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-  <title>Academic Project Page</title>
+  <title>Category-Aware Smoke Removal Algorithm for Endoscopic Surgery Videos</title>
   <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
   rel="stylesheet">
@@ -43,6 +43,47 @@
   <script src="static/js/bulma-carousel.min.js"></script>
   <script src="static/js/bulma-slider.min.js"></script>
   <script src="static/js/index.js"></script>
+
+<style>
+.image-compare-container {
+  max-width: 600px;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+}
+
+.image-compare {
+  position: relative;
+  width: 100%;
+  cursor: ew-resize;
+}
+
+.before-img,
+.after-img {
+  width: 100%;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.after-img {
+  clip-path: inset(0 50% 0 0);
+  transition: clip-path 0.1s;
+}
+
+.slider {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 3px;
+  height: 100%;
+  background-color: #ffffff;
+  pointer-events: none;
+  z-index: 2;
+}
+</style>
+
 </head>
 <body>
 
@@ -104,6 +145,17 @@
                   </a>
                 </span>
 
+                  <!-- Dataset link -->
+                  <span class="link-block">
+                    <a href="https://github.com/YOUR REPO HERE" target="_blank"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>Dataset</span>
+                  </a>
+                </span>
+
                 <!-- ArXiv abstract Link -->
                 <span class="link-block">
                   <a href="https://arxiv.org/abs/<ARXIV PAPER ID>" target="_blank"
@@ -156,6 +208,64 @@
   </div>
 </section>
 <!-- End paper abstract -->
+
+<!-- Image carousel -->
+<section class="hero is-small">
+  <div class="hero-body">
+    <div class="container">
+      <div id="results-carousel" class="carousel results-carousel">
+        
+        <!-- Item 1 -->
+        <div class="item">
+          <div class="image-compare-container">
+            <div class="image-compare">
+              <img src="static/images/carousel1_before.jpg" alt="Before" class="before-img" />
+              <img src="static/images/carousel1_after.jpg" alt="After" class="after-img" />
+              <div class="slider"></div>
+            </div>
+          </div>
+          <h2 class="subtitle has-text-centered">
+            First image description.
+          </h2>
+        </div>
+
+        <!-- Repeat for other images -->
+        <div class="item">
+          <div class="image-compare-container">
+            <div class="image-compare">
+              <img src="static/images/carousel2_before.jpg" alt="Before" class="before-img" />
+              <img src="static/images/carousel2_after.jpg" alt="After" class="after-img" />
+              <div class="slider"></div>
+            </div>
+          </div>
+          <h2 class="subtitle has-text-centered">
+            Second image description.
+          </h2>
+        </div>
+
+        <!-- Add more items as needed -->
+        
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End image carousel -->
+
+<!-- Script -->
+<script>
+document.querySelectorAll('.image-compare').forEach(container => {
+  const afterImg = container.querySelector('.after-img');
+  const slider = container.querySelector('.slider');
+
+  container.addEventListener('mousemove', (e) => {
+    const rect = container.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const percent = Math.max(0, Math.min(x / rect.width, 1));
+    afterImg.style.clipPath = `inset(0 ${100 - percent * 100}% 0 0)`;
+    slider.style.left = `${percent * 100}%`;
+  });
+});
+</script>
 
 
 <!-- Image carousel -->
